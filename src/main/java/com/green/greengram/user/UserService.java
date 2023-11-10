@@ -18,12 +18,15 @@ public class UserService {
 
     //1: 아이디/비번 맞췄음, 2: 아이디 없음, 3: 비밀번호 다름
     public ResVo signin(UserSigninDto dto) {
-        int result = 0;
+        int result = 3;
 
         String savedUpw = mapper.selUserByUid(dto.getUid());
         System.out.println("savedUpw : " + savedUpw);
-
-
+        if(savedUpw == null) {
+            result = 2;
+        } else if(savedUpw.equals(dto.getUpw())) {
+            result = 1;
+        }
         return new ResVo(result);
     }
 }
