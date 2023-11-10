@@ -9,4 +9,8 @@
             pic = #{pic}
     </insert>
 
+    <select id="selUserByUid">
+        SELECT upw FROM t_user
+        WHERE uid = #{uid}
+    </select>
 </mapper>

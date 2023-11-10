@@ -2,6 +2,7 @@ package com.green.greengram.user;
 
 import com.green.greengram.ResVo;
 import com.green.greengram.user.model.UserInsDto;
+import com.green.greengram.user.model.UserSigninDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,17 @@ public class UserService {
     //
     public ResVo insUser(UserInsDto udto){
         int result = mapper.insUser(udto);
+        return new ResVo(result);
+    }
+
+    //1: 아이디/비번 맞췄음, 2: 아이디 없음, 3: 비밀번호 다름
+    public ResVo signin(UserSigninDto dto) {
+        int result = 0;
+
+        String savedUpw = mapper.selUserByUid(dto.getUid());
+        System.out.println("savedUpw : " + savedUpw);
+
+
         return new ResVo(result);
     }
 }
