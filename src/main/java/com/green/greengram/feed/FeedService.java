@@ -1,11 +1,11 @@
 package com.green.greengram.feed;
 
 import com.green.greengram.ResVo;
-import com.green.greengram.feed.model.FeedInsDto;
-import com.green.greengram.feed.model.FeedInsProcDto;
-import com.green.greengram.feed.model.FeedPicsInsProcDto;
+import com.green.greengram.feed.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +22,16 @@ public class FeedService {
         FeedPicsInsProcDto p2Dto = new FeedPicsInsProcDto(pDto.getIfeed(), dto.getPics());
         int result2 = mapper.insFeedPic(p2Dto);
         System.out.println("result2 : " + result2);
-        return null;
+        return new ResVo(pDto.getIfeed());
+    }
+
+    public List<FeedSelVo> getFeed(int page) {
+        final int ROW_COUNT = 30;
+        FeedSelDto dto = FeedSelDto.builder()
+                .startIdx((page - 1) * ROW_COUNT)
+                .rowCount(ROW_COUNT)
+                .build();
+        List<FeedSelVo> result = mapper.selFeed(dto);
+        return result;
     }
 }
