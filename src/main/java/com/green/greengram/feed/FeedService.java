@@ -43,12 +43,17 @@ public class FeedService {
             feedMap.put(vo.getIfeed(), vo);
         }
         System.out.println("--------------");
-        List<FeedPicsVo> feedPicsList = mapper.selFeedPics(iFeedList);
+        if(iFeedList.size() > 0) {
+            List<FeedPicsVo> feedPicsList = mapper.selFeedPics(iFeedList);
 
-        for(FeedPicsVo vo : feedPicsList) {
-            FeedSelVo feedVo = feedMap.get(vo.getIfeed());
-            feedVo.getPics().add(vo.getPic());
+            for(FeedPicsVo vo : feedPicsList) {
+                System.out.println(vo);
+                FeedSelVo feedVo = feedMap.get(vo.getIfeed());
+                List<String> strPicsList = feedVo.getPics();
+                strPicsList.add(vo.getPic());
+            }
         }
+
         return feedSelVoList;
     }
 }
