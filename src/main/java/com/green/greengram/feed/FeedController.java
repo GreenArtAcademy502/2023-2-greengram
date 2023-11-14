@@ -17,8 +17,7 @@ public class FeedController {
     @PostMapping
     public ResVo insFeed(@RequestBody FeedInsDto dto) {
         System.out.println(dto);
-        service.insFeed(dto);
-        return null;
+        return service.insFeed(dto);
     }
 
     @GetMapping

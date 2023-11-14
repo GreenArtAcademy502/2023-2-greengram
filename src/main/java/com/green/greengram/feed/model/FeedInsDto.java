@@ -6,8 +6,8 @@ import java.util.List;
 
 @Data
 public class FeedInsDto {
-    private int iuser; //3
-    private String contents; //나이스
-    private String location; //서울
+    private int iuser;
+    private String contents;
+    private String location;
     private List<String> pics;
 }

@@ -22,6 +22,8 @@
 
 
 
+    <!--  ["a", "b", "c"]  -->
+
     <!-- t_feed_pics  -->
     <insert id="insFeedPic">
         INSERT INTO t_feed_pics
@@ -31,4 +33,13 @@
             #{ifeed}, #{pic}
         </foreach>
     </insert>
+    <!--  [1, 2, 3]  -->
+    <select id="selFeedPics">
+        SELECT ifeed, pic
+        FROM t_feed_pics
+        WHERE ifeed in
+        <foreach collection="list" item="ifeed" open="(" close=")" separator=",">
+            #{ifeed}
+        </foreach>
+    </select>
 </mapper>

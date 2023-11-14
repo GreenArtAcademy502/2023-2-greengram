@@ -5,7 +5,10 @@ import com.green.greengram.feed.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +34,21 @@ public class FeedService {
                 .startIdx((page - 1) * ROW_COUNT)
                 .rowCount(ROW_COUNT)
                 .build();
-        List<FeedSelVo> result = mapper.selFeed(dto);
-        return result;
+        List<FeedSelVo> feedSelVoList = mapper.selFeed(dto);
+        List<Integer> iFeedList = new ArrayList();
+        Map<Integer, FeedSelVo> feedMap = new HashMap();
+        for(FeedSelVo vo : feedSelVoList) {
+            System.out.println(vo);
+            iFeedList.add(vo.getIfeed());
+            feedMap.put(vo.getIfeed(), vo);
+        }
+        System.out.println("--------------");
+        List<FeedPicsVo> feedPicsList = mapper.selFeedPics(iFeedList);
+
+        for(FeedPicsVo vo : feedPicsList) {
+            FeedSelVo feedVo = feedMap.get(vo.getIfeed());
+            feedVo.getPics().add(vo.getPic());
+        }
+        return feedSelVoList;
     }
 }
