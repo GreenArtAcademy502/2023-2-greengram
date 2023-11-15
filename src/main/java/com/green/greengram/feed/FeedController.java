@@ -22,9 +22,9 @@ public class FeedController {
     }
 
     @GetMapping
-    public List<FeedSelVo> getFeed(int page) {
+    public List<FeedSelVo> getFeed(int page, int iuser) {
         System.out.println(page);
-        return service.getFeed(page);
+        return service.getFeed(page, iuser);
     }
 
     @GetMapping("/{ifeed}/fav")
