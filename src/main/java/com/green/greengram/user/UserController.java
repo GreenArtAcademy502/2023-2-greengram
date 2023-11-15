@@ -2,9 +2,9 @@ package com.green.greengram.user;
 
 import com.green.greengram.ResVo;
 import com.green.greengram.user.model.UserInsDto;
+import com.green.greengram.user.model.UserSigninVo;
 import com.green.greengram.user.model.UserSigninDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public ResVo login(@RequestBody UserSigninDto dto) {
+    public UserSigninVo login(@RequestBody UserSigninDto dto) {
         return service.signin(dto);
     }
 }
