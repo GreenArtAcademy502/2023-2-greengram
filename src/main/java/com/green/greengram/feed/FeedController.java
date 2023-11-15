@@ -1,6 +1,7 @@
 package com.green.greengram.feed;
 
 import com.green.greengram.ResVo;
+import com.green.greengram.feed.model.FeedFavProcDto;
 import com.green.greengram.feed.model.FeedInsDto;
 import com.green.greengram.feed.model.FeedSelVo;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,16 @@ public class FeedController {
     public List<FeedSelVo> getFeed(int page) {
         System.out.println(page);
         return service.getFeed(page);
+    }
+
+    @GetMapping("/{ifeed}/fav")
+    public ResVo procFav(@PathVariable int ifeed, int iuser) {
+        System.out.println("ifeed: " + ifeed);
+        System.out.println("iuser: " + iuser);
+        FeedFavProcDto dto = FeedFavProcDto.builder()
+                                        .ifeed(ifeed)
+                                        .iuser(iuser)
+                                        .build();
+        return service.procFav(dto);
     }
 }
