@@ -28,7 +28,8 @@ public class FeedController {
     }
 
     @GetMapping("/{targetIuser}")
-    public List<FeedSelVo> getMyFeed(@PathVariable int targetIuser, int page, int loginedIuser) {
+    public List<FeedSelVo> getProfileFeed(
+            @PathVariable int targetIuser, int page, int loginedIuser) {
         return service.getFeed(page, loginedIuser, targetIuser);
     }
 
