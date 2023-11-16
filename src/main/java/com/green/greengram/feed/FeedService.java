@@ -28,10 +28,11 @@ public class FeedService {
         return new ResVo(pDto.getIfeed());
     }
 
-    public List<FeedSelVo> getFeed(int page, int iuser) {
+    public List<FeedSelVo> getFeed(int page, int loginedIuser, int targetIuser) {
         final int ROW_COUNT = 30;
         FeedSelDto dto = FeedSelDto.builder()
-                .iuser(iuser)
+                .loginedIuser(loginedIuser)
+                .targetIuser(targetIuser)
                 .startIdx((page - 1) * ROW_COUNT)
                 .rowCount(ROW_COUNT)
                 .build();
